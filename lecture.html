@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Schedule Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://ai-public.creatie.ai/gen_page/tailwind-custom.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com/3.4.5?plugins=forms@0.5.7,typography@0.5.13,aspect-ratio@0.4.2,container-queries@0.1.1"></script>
+    <script src="https://ai-public.creatie.ai/gen_page/tailwind-config.min.js" data-color="#000000" data-border-radius="small"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+        * {
+            font-family: "Poppins", san-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-[Inter]">
+    <nav class="bg-white border-b border-gray-200">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <img class="h-8 w-auto" src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="Logo">
+                    </div>
+                </div>
+                <div class="flex-1 flex items-center justify-center px-2 lg:px-6">
+                    <div class="max-w-lg w-full">
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-search text-gray-400"></i>
+                            </div>
+                            <input type="text" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:border-custom focus:ring-1 focus:ring-custom sm:text-sm !rounded-button" placeholder="Search for courses, lecturers...">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <button type="button" class="p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none">
+                        <span class="sr-only">View notifications</span>
+                        <i class="fas fa-bell text-xl"></i>
+                    </button>
+                    <div class="ml-4 relative flex-shrink-0">
+                        <div>
+                            <button type="button" class="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-custom" id="user-menu-button">
+                                <span class="sr-only">Open user menu</span>
+                                <img class="h-8 w-8 rounded-full" src="https://creatie.ai/ai/api/search-image?query=A professional headshot of a young person with a friendly smile, wearing business casual attire, against a neutral background&width=100&height=100&orientation=squarish&flag=8bd79e9b-1af6-420e-bb2d-8a79438da9a1" alt="">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="flex gap-6">
+            <!-- <div class="w-64 flex-shrink-0">
+                <div class="bg-white rounded-lg shadow p-4">
+                    <h3 class="text-lg font-medium text-gray-900 mb-4">Filters</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Department</label>
+                            <select class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-custom focus:border-custom sm:text-sm rounded-md !rounded-button">
+                                <option>All Departments</option>
+                                <option>Computer Science</option>
+                                <option>Engineering</option>
+                                <option>Business</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Faculty</label>
+                            <select class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-custom focus:border-custom sm:text-sm rounded-md !rounded-button">
+                                <option>All Faculties</option>
+                                <option>Science & Technology</option>
+                                <option>Arts & Social Sciences</option>
+                                <option>Medicine</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Semester</label>
+                            <select class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-custom focus:border-custom sm:text-sm rounded-md !rounded-button">
+                                <option>Fall 2024</option>
+                                <option>Spring 2024</option>
+                                <option>Summer 2024</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="flex-1">
+                <div class="bg-white rounded-lg shadow">
+                    <div class="p-4 border-b border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <button class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-custom !rounded-button">
+                                    <i class="fas fa-calendar-day mr-2"></i>Day
+                                </button>
+                                <button class="px-4 py-2 text-sm font-medium text-white bg-custom border border-transparent rounded-md hover:bg-custom/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-custom !rounded-button">
+                                    <i class="fas fa-calendar-week mr-2"></i>Week
+                                </button>
+                                <button class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-custom !rounded-button">
+                                    <i class="fas fa-calendar-alt mr-2"></i>Month
+                                </button>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <button class="text-gray-400 hover:text-gray-500">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="text-gray-400 hover:text-gray-500">
+                                    <i class="fas fa-print"></i>
+                                </button>
+                                <button class="text-gray-400 hover:text-gray-500">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-4">
+                        <div class="grid grid-cols-6 gap-4">
+                            <div class="text-center font-medium text-gray-500"></div>
+                            <div class="text-center font-medium text-gray-500">Monday</div>
+                            <div class="text-center font-medium text-gray-500">Tuesday</div>
+                            <div class="text-center font-medium text-gray-500">Wednesday</div>
+                            <div class="text-center font-medium text-gray-500">Thursday</div>
+                            <div class="text-center font-medium text-gray-500">Friday</div>
+                        </div>
+
+                        <div class="mt-4 grid grid-cols-6 gap-4">
+                            <div class="text-right pr-2">
+                                <div class="text-xs font-medium text-gray-500">9:00</div>
+                                <div class="text-xs font-medium text-gray-500 mt-14">10:00</div>
+                                <div class="text-xs font-medium text-gray-500 mt-14">11:00</div>
+                                <div class="text-xs font-medium text-gray-500 mt-14">12:00</div>
+                                <div class="text-xs font-medium text-gray-500 mt-14">13:00</div>
+                                <div class="text-xs font-medium text-gray-500 mt-14">14:00</div>
+                                <div class="text-xs font-medium text-gray-500 mt-14">15:00</div>
+                                <div class="text-xs font-medium text-gray-500 mt-14">16:00</div>
+                                <div class="text-xs font-medium text-gray-500 mt-14">17:00</div>
+                            </div>
+                            
+                            <div class="relative">
+                                <div class="absolute top-0 left-0 right-0 h-24 bg-blue-100 rounded p-2">
+                                    <div class="text-xs font-medium text-blue-800">CS101: Intro to Programming</div>
+                                    <div class="text-xs text-blue-600">Dr. Smith</div>
+                                    <div class="text-xs text-blue-600">Room 301</div>
+                                </div>
+                                <div class="absolute top-32 left-0 right-0 h-24 bg-green-100 rounded p-2">
+                                    <div class="text-xs font-medium text-green-800">MATH201: Calculus</div>
+                                    <div class="text-xs text-green-600">Prof. Johnson</div>
+                                    <div class="text-xs text-green-600">Room 205</div>
+                                </div>
+                            </div>
+
+                            <div class="relative">
+                                <div class="absolute top-64 left-0 right-0 h-24 bg-purple-100 rounded p-2">
+                                    <div class="text-xs font-medium text-purple-800">PHY202: Physics II</div>
+                                    <div class="text-xs text-purple-600">Dr. Brown</div>
+                                    <div class="text-xs text-purple-600">Lab 102</div>
+                                </div>
+                            </div>
+
+                            <div class="relative">
+                                <div class="absolute top-0 left-0 right-0 h-24 bg-yellow-100 rounded p-2">
+                                    <div class="text-xs font-medium text-yellow-800">ENG101: English Comp</div>
+                                    <div class="text-xs text-yellow-600">Prof. Davis</div>
+                                    <div class="text-xs text-yellow-600">Room 401</div>
+                                </div>
+                            </div>
+
+                            <div class="relative">
+                                <div class="absolute top-32 left-0 right-0 h-24 bg-red-100 rounded p-2">
+                                    <div class="text-xs font-medium text-red-800">CHEM101: Chemistry</div>
+                                    <div class="text-xs text-red-600">Dr. Wilson</div>
+                                    <div class="text-xs text-red-600">Lab 203</div>
+                                </div>
+                            </div>
+
+                            <div class="relative">
+                                <div class="absolute top-96 left-0 right-0 h-24 bg-pink-100 rounded p-2">
+                                    <div class="text-xs font-medium text-pink-800">ART202: Design</div>
+                                    <div class="text-xs text-pink-600">Prof. Miller</div>
+                                    <div class="text-xs text-pink-600">Studio 105</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-80 flex-shrink-0">
+                <div class="bg-white rounded-lg shadow p-4">
+                    <h3 class="text-lg font-medium text-gray-900 mb-4">Upcoming Lectures</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center p-3 bg-blue-50 rounded-lg">
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-blue-800">CS101: Intro to Programming</p>
+                                <p class="text-xs text-blue-600">In 30 minutes • Room 301</p>
+                            </div>
+                            <i class="fas fa-bell text-blue-400"></i>
+                        </div>
+                        <div class="flex items-center p-3 bg-green-50 rounded-lg">
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-green-800">MATH201: Calculus</p>
+                                <p class="text-xs text-green-600">Today at 2:00 PM • Room 205</p>
+                            </div>
+                            <i class="fas fa-bell text-green-400"></i>
+                        </div>
+                        <div class="flex items-center p-3 bg-purple-50 rounded-lg">
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-purple-800">PHY202: Physics II</p>
+                                <p class="text-xs text-purple-600">Tomorrow at 9:00 AM • Lab 102</p>
+                            </div>
+                            <i class="fas fa-bell text-purple-400"></i>
+                        </div>
+                    </div>
+
+                    <h3 class="text-lg font-medium text-gray-900 mt-6 mb-4">Announcements</h3>
+                    <div class="space-y-4">
+                        <div class="p-3 bg-red-50 rounded-lg">
+                            <p class="text-sm font-medium text-red-800">Room Change Notice</p>
+                            <p class="text-xs text-red-600 mt-1">CHEM101 has been moved to Lab 203 for next week</p>
+                        </div>
+                        <div class="p-3 bg-yellow-50 rounded-lg">
+                            <p class="text-sm font-medium text-yellow-800">Schedule Update</p>
+                            <p class="text-xs text-yellow-600 mt-1">ENG101 will start 30 minutes later on Friday</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-white border-t border-gray-200 mt-8">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between text-sm text-gray-500">
+                <div class="flex items-center space-x-4">
+                    <span>Last updated: 5 minutes ago</span>
+                    <span>•</span>
+                    <span>Week 8 of Spring 2024</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span>Total Courses: 6</span>
+                    <span>•</span>
+                    <span>Weekly Hours: 18</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
