@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="admin-dashboard">
+        <!-- Header -->
+        <header class="bg-blue-600 text-white p-4">
+            <h1 class="text-xl font-bold">Admin Dashboard</h1>
+        </header>
+    
+        <!-- Navigation -->
+        <nav class="bg-gray-800 text-white p-4">
+            <ul>
+                <li><a href="#add-lecturer" class="hover:bg-blue-500 px-2 py-1">Add Lecturer</a></li>
+                <li><a href="#add-student" class="hover:bg-blue-500 px-2 py-1">Add Student</a></li>
+                <li><a href="#update-timetable" class="hover:bg-blue-500 px-2 py-1">Update Timetable</a></li>
+                <li><a href="#view-timetable" class="hover:bg-blue-500 px-2 py-1">View Timetable</a></li>
+            </ul>
+        </nav>
+    
+        <!-- Add Lecturer Section -->
+        <section id="add-lecturer" class="p-4">
+            <h2 class="text-lg font-semibold">Add Lecturer</h2>
+            <form id="lecturer-form">
+                <input type="text" id="lecturer-name" placeholder="Lecturer Name" class="border p-2 my-2 w-full" required />
+                <input type="email" id="lecturer-email" placeholder="Lecturer Email" class="border p-2 my-2 w-full" required />
+                <input type="password" id="lecturer-password" placeholder="Password" class="border p-2 my-2 w-full" required />
+                <button type="submit" class="bg-blue-600 text-white px-4 py-2">Add Lecturer</button>
+            </form>
+        </section>
+    
+        <!-- Add Student Section -->
+        <section id="add-student" class="p-4">
+            <h2 class="text-lg font-semibold">Add Student</h2>
+            <form id="student-form">
+                <input type="text" id="student-name" placeholder="Student Name" class="border p-2 my-2 w-full" required />
+                <input type="email" id="student-email" placeholder="Student Email" class="border p-2 my-2 w-full" required />
+                <input type="password" id="student-password" placeholder="Password" class="border p-2 my-2 w-full" required />
+                <button type="submit" class="bg-blue-600 text-white px-4 py-2">Add Student</button>
+            </form>
+        </section>
+    
+        <!-- Timetable Section -->
+        <section id="update-timetable" class="p-4">
+            <h2 class="text-lg font-semibold">Update Timetable</h2>
+            <form id="timetable-form">
+                <input type="text" id="course-code" placeholder="Course Code" class="border p-2 my-2 w-full" required />
+                <input type="text" id="course-title" placeholder="Course Title" class="border p-2 my-2 w-full" required />
+                <input type="time" id="start-time" class="border p-2 my-2 w-full" required />
+                <input type="time" id="end-time" class="border p-2 my-2 w-full" required />
+                <input type="text" id="room" placeholder="Room" class="border p-2 my-2 w-full" required />
+                <input type="text" id="lecturer-id" placeholder="Lecturer ID" class="border p-2 my-2 w-full" required />
+                <button type="submit" class="bg-blue-600 text-white px-4 py-2">Update Timetable</button>
+            </form>
+        </section>
+    
+        <!-- View Timetable Section -->
+        <section id="view-timetable" class="p-4">
+            <h2 class="text-lg font-semibold">View Timetable</h2>
+            <div class="grid grid-cols-6 gap-4">
+                <div class="text-center font-medium text-gray-500">Monday</div>
+                <div class="text-center font-medium text-gray-500">Tuesday</div>
+                <div class="text-center font-medium text-gray-500">Wednesday</div>
+                <div class="text-center font-medium text-gray-500">Thursday</div>
+                <div class="text-center font-medium text-gray-500">Friday</div>
+            </div>
+    
+            <div class="mt-4 grid grid-cols-6 gap-4">
+                <div class="text-right pr-2">
+                    <div class="text-xs font-medium text-gray-500">9:00</div>
+                    <div class="text-xs font-medium text-gray-500 mt-14">10:00</div>
+                    <div class="text-xs font-medium text-gray-500 mt-14">11:00</div>
+                    <div class="text-xs font-medium text-gray-500 mt-14">12:00</div>
+                    <div class="text-xs font-medium text-gray-500 mt-14">13:00</div>
+                    <div class="text-xs font-medium text-gray-500 mt-14">14:00</div>
+                    <div class="text-xs font-medium text-gray-500 mt-14">15:00</div>
+                    <div class="text-xs font-medium text-gray-500 mt-14">16:00</div>
+                    <div class="text-xs font-medium text-gray-500 mt-14">17:00</div>
+                </div>
+    
+                <div id="monday" class="relativeRow"></div>
+                <div id="tuesday" class="relativeRow"></div>
+                <div id="wednesday" class="relativeRow"></div>
+                <div id="thursday" class="relativeRow"></div>
+                <div id="friday" class="relativeRow"></div>
+            </div>
+        </section>
+    </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

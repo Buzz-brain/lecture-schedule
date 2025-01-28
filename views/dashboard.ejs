@@ -45,30 +45,21 @@
             <div class="flex justify-between h-16">
                 <div class="flex">
                     <div class="flex-shrink-0 flex items-center">
-                        <img class="h-8 w-auto" src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="Logo">
+                        <!-- <img src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="Logo" -->
+                        <!-- class="h-8 w-auto" /> -->
+                    <span class="ml-3 text-xl font-semibold text-gray-900">Academic Timetable System</span>
                     </div>
                 </div>
                 <div class="flex-1 flex items-center justify-center px-2 lg:px-6">
-                    <!-- <div class="max-w-lg w-full">
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="fas fa-search text-gray-400"></i>
-                            </div>
-                            <input type="text" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:border-custom focus:ring-1 focus:ring-custom sm:text-sm !rounded-button" placeholder="Search for courses, lecturers...">
-                        </div>
-                    </div> -->
                     <h1>500lvl Lecture Time-table</h1>
                 </div>
                 <div class="flex items-center">
-                    <button type="button" class="p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none">
-                        <span class="sr-only">View notifications</span>
-                        <i class="fas fa-bell text-xl"></i>
-                    </button>
                     <div class="ml-4 relative flex-shrink-0">
                         <div>
-                            <button type="button" class="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-custom" id="user-menu-button">
-                                <span class="sr-only">Open user menu</span>
-                                <img class="h-8 w-8 rounded-full" src="https://creatie.ai/ai/api/search-image?query=A professional headshot of a young person with a friendly smile, wearing business casual attire, against a neutral background&width=100&height=100&orientation=squarish&flag=8bd79e9b-1af6-420e-bb2d-8a79438da9a1" alt="">
+                            <button type="button" class="bg-white rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-custom" id="user-menu-button">
+                                <h1 id="username-display" style="margin-right: 30px;"></h1>
+                                <button id="logout-button" class="!rounded-button bg-custom text-white px-4 py-2 text-sm font-medium hover:bg-custom/90">Logout</button>
+
                             </button>
                         </div>
                     </div>
@@ -81,23 +72,6 @@
         <div class="flex gap-6">
             <div class="flex-1">
                 <div class="bg-white rounded-lg shadow">
-                    <div class="p-4 border-b border-gray-200">
-                        <div class="flex items-center justify-between">
-
-                            <div class="flex items-center space-x-4">
-                                <button class="text-gray-400 hover:text-gray-500">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                                <button class="text-gray-400 hover:text-gray-500">
-                                    <i class="fas fa-print"></i>
-                                </button>
-                                <button class="text-gray-400 hover:text-gray-500">
-                                    <i class="fas fa-sync-alt"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="p-4">
                         <div class="grid grid-cols-6 gap-4">
                           <div class="text-center font-medium text-gray-500"></div>
@@ -134,12 +108,12 @@
 
             <div class="w-80 flex-shrink-0">
                 <div class="bg-white rounded-lg shadow p-4">
-                    <h3 class="text-lg font-medium text-gray-900 mb-4">Upcoming Lectures</h3>
+                    <!-- <h3 class="text-lg font-medium text-gray-900 mb-4">Upcoming Lectures</h3>
                     <div class="space-y-4" id="upcoming-lectures">
                         <div class="flex items-center p-3 bg-blue-50 rounded-lg">
                             <i class="fas fa-bell text-blue-400"></i>
                         </div>
-                    </div>
+                    </div> -->
 
                     <h3 class="text-lg font-medium text-gray-900 mt-6 mb-4">Lecture Update</h3>
                     <div class="space-y-4" id="announcements">
@@ -174,6 +148,32 @@
             </div>
         </div> -->
     </footer>
+    <script>
+        // Get the username and role from localStorage
+const username = localStorage.getItem('username');
+const role = localStorage.getItem('role');
+
+// Check if the username and role are not null
+if (username !== null && role !== null) {
+  // Display the username and role on the dashboard
+  document.getElementById('username-display').innerHTML = `Welcome, ${username}! ( ${role} )`;
+} else {
+  // If the username and role are null, redirect to the login page
+  window.location.href = '/login';
+}
+
+// Logout button event listener
+document.getElementById('logout-button').addEventListener('click', () => {
+  // Clear the localStorage
+  localStorage.clear();
+  // Redirect to the login page
+  window.location.href = '/login';
+});
+
+
+
+    </script>
     <script src="js/script.js"></script>
+
 </body>
 </html>

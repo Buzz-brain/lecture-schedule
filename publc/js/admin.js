@@ -8,8 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
             name: document.getElementById('lecturer-name').value,
             email: document.getElementById('lecturer-email').value,
             password: document.getElementById('lecturer-password').value,
+            phone: document.getElementById('lecturer-phone').value,
         };
-
+console.log(lecturerData)
         try {
             const response = await fetch('/admin/lecturers', {
                 method: 'POST',
@@ -20,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const result = await response.json();
+            console.log(result)
 
             if (response.ok) {
                 alert(result.message); // Notify the admin of success
@@ -41,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: document.getElementById('student-name').value,
             email: document.getElementById('student-email').value,
             password: document.getElementById('student-password').value,
+            phone: document.getElementById('student-phone').value,
         };
 
         try {
@@ -64,6 +67,30 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('An error occurred: ' + error.message);
         }
     });
+
+    // Fetch lecturers data from backend
+fetch('/admin/lecturers')
+.then(response => response.json())
+.then(data => {
+  // Get the table body element
+  const tableBody = document.querySelector('tbody');
+
+  // Clear the table body
+  tableBody.innerHTML = '';
+
+  // Render each lecturer in the table
+  data.forEach(lecturer => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${lecturer._id}</td>
+      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${lecturer.name}</td>
+      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${lecturer.email}</td>
+      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${lecturer.phoneNumber}</td>
+    `;
+    tableBody.appendChild(row);
+  });
+})
+.catch(error => console.error(error));
 
     // Handle timetable form submission
     const timetableForm = document.getElementById('timetable-form');

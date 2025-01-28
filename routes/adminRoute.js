@@ -93,6 +93,20 @@ router.post('/timetable/:day', async (req, res) => {
     }
 });
 
+// Get all lecturers route
+router.get('/lecturers', async (req, res) => {
+    try {
+      const lecturers = await Lecturer.find().select('-password');
+      res.json(lecturers);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Error fetching lecturers' });
+    }
+  });
+  
+  module.exports = router;
+  
+
 module.exports = router;
 
 

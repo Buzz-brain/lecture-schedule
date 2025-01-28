@@ -8,7 +8,9 @@ const lecturerRoute = require('./routes/lecturerRoute');
 const lectureRoute = require('./routes/lectureRoute');
 const studentRoute = require('./routes/studentRoute');
 
-mongoose.connect('mongodb+srv://chinomsochristian03:ahYZxLh5loYrfgss@cluster0.dmkcl.mongodb.net/lecture_schedule?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://chinomsochristian03:ahYZxLh5loYrfgss@cluster0.dmkcl.mongodb.net/lecture_schedule?retryWrites=true&w=majority')
+.then(() => console.log('MongoDB connected'))
+  .catch((err) => console.log('MongoDB connection error:', err));
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "publc")));
@@ -27,6 +29,12 @@ app.get('/admindashboard', (req, res) => {
 });
 app.get('/lecturerdashboard', (req, res) => {
   res.render('lecturerdashboard');
+});
+app.get('/', (req, res) => {
+  res.render('landing');
+});
+app.get('/login', (req, res) => {
+  res.render('login');
 });
 
 
@@ -74,3 +82,4 @@ app.listen(5000, () => {
 //       res.status(400).json({ error: 'Invalid token' });
 //     }
 //   }
+

@@ -1,97 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard</title>
-  <link rel="stylesheet" href="css/admin.css">
-</head>
-<body>
-    <div class="admin-dashboard">
-        <!-- Header -->
-        <header class="bg-blue-600 text-white p-4">
-            <h1 class="text-xl font-bold">Admin Dashboard</h1>
-        </header>
-    
-        <!-- Navigation -->
-        <nav class="bg-gray-800 text-white p-4">
-            <ul>
-                <li><a href="#add-lecturer" class="hover:bg-blue-500 px-2 py-1">Add Lecturer</a></li>
-                <li><a href="#add-student" class="hover:bg-blue-500 px-2 py-1">Add Student</a></li>
-                <li><a href="#update-timetable" class="hover:bg-blue-500 px-2 py-1">Update Timetable</a></li>
-                <li><a href="#view-timetable" class="hover:bg-blue-500 px-2 py-1">View Timetable</a></li>
-            </ul>
-        </nav>
-    
-        <!-- Add Lecturer Section -->
-        <section id="add-lecturer" class="p-4">
-            <h2 class="text-lg font-semibold">Add Lecturer</h2>
-            <form id="lecturer-form">
-                <input type="text" id="lecturer-name" placeholder="Lecturer Name" class="border p-2 my-2 w-full" required />
-                <input type="email" id="lecturer-email" placeholder="Lecturer Email" class="border p-2 my-2 w-full" required />
-                <input type="password" id="lecturer-password" placeholder="Password" class="border p-2 my-2 w-full" required />
-                <button type="submit" class="bg-blue-600 text-white px-4 py-2">Add Lecturer</button>
-            </form>
-        </section>
-    
-        <!-- Add Student Section -->
-        <section id="add-student" class="p-4">
-            <h2 class="text-lg font-semibold">Add Student</h2>
-            <form id="student-form">
-                <input type="text" id="student-name" placeholder="Student Name" class="border p-2 my-2 w-full" required />
-                <input type="email" id="student-email" placeholder="Student Email" class="border p-2 my-2 w-full" required />
-                <input type="password" id="student-password" placeholder="Password" class="border p-2 my-2 w-full" required />
-                <button type="submit" class="bg-blue-600 text-white px-4 py-2">Add Student</button>
-            </form>
-        </section>
-    
-        <!-- Timetable Section -->
-        <section id="update-timetable" class="p-4">
-            <h2 class="text-lg font-semibold">Update Timetable</h2>
-            <form id="timetable-form">
-                <input type="text" id="course-code" placeholder="Course Code" class="border p-2 my-2 w-full" required />
-                <input type="text" id="course-title" placeholder="Course Title" class="border p-2 my-2 w-full" required />
-                <input type="time" id="start-time" class="border p-2 my-2 w-full" required />
-                <input type="time" id="end-time" class="border p-2 my-2 w-full" required />
-                <input type="text" id="room" placeholder="Room" class="border p-2 my-2 w-full" required />
-                <input type="text" id="lecturer-id" placeholder="Lecturer ID" class="border p-2 my-2 w-full" required />
-                <button type="submit" class="bg-blue-600 text-white px-4 py-2">Update Timetable</button>
-            </form>
-        </section>
-    
-        <!-- View Timetable Section -->
-        <section id="view-timetable" class="p-4">
-            <h2 class="text-lg font-semibold">View Timetable</h2>
-            <div class="grid grid-cols-6 gap-4">
-                <div class="text-center font-medium text-gray-500">Monday</div>
-                <div class="text-center font-medium text-gray-500">Tuesday</div>
-                <div class="text-center font-medium text-gray-500">Wednesday</div>
-                <div class="text-center font-medium text-gray-500">Thursday</div>
-                <div class="text-center font-medium text-gray-500">Friday</div>
-            </div>
-    
-            <div class="mt-4 grid grid-cols-6 gap-4">
-                <div class="text-right pr-2">
-                    <div class="text-xs font-medium text-gray-500">9:00</div>
-                    <div class="text-xs font-medium text-gray-500 mt-14">10:00</div>
-                    <div class="text-xs font-medium text-gray-500 mt-14">11:00</div>
-                    <div class="text-xs font-medium text-gray-500 mt-14">12:00</div>
-                    <div class="text-xs font-medium text-gray-500 mt-14">13:00</div>
-                    <div class="text-xs font-medium text-gray-500 mt-14">14:00</div>
-                    <div class="text-xs font-medium text-gray-500 mt-14">15:00</div>
-                    <div class="text-xs font-medium text-gray-500 mt-14">16:00</div>
-                    <div class="text-xs font-medium text-gray-500 mt-14">17:00</div>
-                </div>
-    
-                <div id="monday" class="relativeRow"></div>
-                <div id="tuesday" class="relativeRow"></div>
-                <div id="wednesday" class="relativeRow"></div>
-                <div id="thursday" class="relativeRow"></div>
-                <div id="friday" class="relativeRow"></div>
-            </div>
-        </section>
-    </div>
 
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Academic Timetable Management System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://ai-public.creatie.ai/gen_page/tailwind-custom.css" rel="stylesheet" />
+    <script
+        src="https://cdn.tailwindcss.com/3.4.5?plugins=forms@0.5.7,typography@0.5.13,aspect-ratio@0.4.2,container-queries@0.1.1"></script>
+    <script src="https://ai-public.creatie.ai/gen_page/tailwind-config.min.js" data-color="#000000"
+        data-border-radius="small"></script>
+</head>
+
+<body class="bg-gray-50">
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="ml-3 text-xl font-semibold text-gray-900">Academic Timetable System</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="flex items-center gap-4"><span class="text-gray-700">Admin</span><button
+                            class="!rounded-button bg-custom text-white px-4 py-2 text-sm font-medium hover:bg-custom/90">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="relative bg-white overflow-hidden">
+        <div class="max-w-8xl mx-auto">
+            <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:pb-28 xl:pb-32">
+                <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 lg:mt-16 lg:px-8 xl:mt-20">
+                    <div class="mx-auto max-w-7xl px-4 py-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <h3 class="text-xl font-semibold mb-4">Add Lecturer</h3>
+                                <form class="space-y-4" id="lecturer-form">
+                                    <div><label class="block text-sm font-medium text-gray-700">Name</label>
+                                        <input
+                                            type="text"  id="lecturer-name"   required
+                                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" />
+                                    </div>
+                                    <div class="mt-4"><label
+                                            class="block text-sm font-medium text-gray-700">Email</label><input
+                                            type="email" id="lecturer-email"  required
+                                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" />
+                                    </div>
+                                    <div class="mt-4"><label
+                                            class="block text-sm font-medium text-gray-700">Password</label><input
+                                            type="password" id="lecturer-password" required
+                                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" />
+                                    </div>
+                                    <div class="mt-4"><label class="block text-sm font-medium text-gray-700">Phone
+                                            Number</label><input type="number" id="lecturer-phone" required
+                                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" />
+                                    </div><button type="submit"
+                                        class="mt-6 w-full bg-custom text-white px-4 py-2 rounded-md hover:bg-custom/90">Add
+                                        Lecturer</button>
+                                </form>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <h3 class="text-xl font-semibold mb-4">Add Student</h3>
+                                <form class="space-y-4" id="student-form">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Name</label><input
+                                            type="text" id="student-name"
+                                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" />
+                                    </div>
+                                    <div class="mt-4"><label
+                                            class="block text-sm font-medium text-gray-700">Registration
+                                            Number</label><input type="text" id="student-reg"
+                                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" />
+                                    </div>
+                                    <div class="mt-4"><label
+                                            class="block text-sm font-medium text-gray-700">Email</label><input
+                                            type="email" id="student-email"
+                                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" />
+                                    </div>
+                                    <div class="mt-4"><label
+                                            class="block text-sm font-medium text-gray-700">Password</label><input
+                                            type="password" id="student-password"
+                                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" />
+                                    </div>
+                                    <div class="mt-4"><label class="block text-sm font-medium text-gray-700">Phone
+                                            Number</label><input type="number"
+                                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" />
+                                    </div><button type="submit" id="student-phone"
+                                        class="mt-6 w-full bg-custom text-white px-4 py-2 rounded-md hover:bg-custom/90">Add
+                                        Student</button>
+                                </form>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <h3 class="text-xl font-semibold mb-4">Update Timetable</h3>
+                                <form class="space-y-4"  id="timetable-form">
+                                    <div><label class="block text-sm font-medium text-gray-700">Course
+                                            Code</label><input type="text" id="course-code"
+                                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" />
+                                    </div>
+                                    <div class="mt-4"><label class="block text-sm font-medium text-gray-700">Course
+                                            Title</label><input type="text" id="course-title"
+                                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" />
+                                    </div>
+                                    <div class="mt-4"><label class="block text-sm font-medium text-gray-700">Start
+                                            Time</label><input type="time" id="start-time"
+                                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" />
+                                    </div>
+                                    <div class="mt-4"><label class="block text-sm font-medium text-gray-700">End
+                                            Time</label><input type="time"  id="end-time"
+                                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" />
+                                    </div>
+                                    <div class="mt-4"><label
+                                            class="block text-sm font-medium text-gray-700">Room</label><input
+                                            type="text" id="room"
+                                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" />
+                                    </div>
+                                    <div class="mt-4"><label class="block text-sm font-medium text-gray-700">Lecturer
+                                            ID</label><input type="text" id="lecturer-id"
+                                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" />
+                                    </div><button type="submit" 
+                                        class="mt-6 w-full bg-custom text-white px-4 py-2 rounded-md hover:bg-custom/90">Update
+                                        Timetable</button>
+                                </form>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <h3 class="text-xl font-semibold mb-4">View Lecturers</h3>
+                                <div class="space-y-4">
+                                  <div class="overflow-auto max-h-[400px]">
+                                    <table class="min-w-full divide-y divide-gray-200">
+                                      <thead class="bg-gray-50">
+                                        <tr>
+                                          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                                          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone Number</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody class="bg-white divide-y divide-gray-200">
+                                        <!-- Lecturer data will be rendered here -->
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+    <footer class="bg-white">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Support</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li>
+                            <a href="#" class="text-base text-gray-500 hover:text-gray-900">Help Center</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-base text-gray-500 hover:text-gray-900">Contact Us</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-base text-gray-500 hover:text-gray-900">FAQ</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Legal</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li>
+                            <a href="#" class="text-base text-gray-500 hover:text-gray-900">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-base text-gray-500 hover:text-gray-900">Terms of Service</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Company</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li>
+                            <a href="#" class="text-base text-gray-500 hover:text-gray-900">About</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-base text-gray-500 hover:text-gray-900">Blog</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Connect</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li>
+                            <a href="#" class="text-base text-gray-500 hover:text-gray-900">Twitter</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-base text-gray-500 hover:text-gray-900">Facebook</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-base text-gray-500 hover:text-gray-900">LinkedIn</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-200 pt-8 md:flex md:items-center md:justify-between">
+                <div class="flex space-x-6 md:order-2">
+                    <a href="#" class="text-gray-400 hover:text-gray-500">
+                        <i class="fab fa-facebook text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-500">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-500">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                </div>
+                <p class="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
+                    © 2024 Academic Timetable System. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
   <script src="js/admin.js"></script>
+    
 </body>
+
 </html>
