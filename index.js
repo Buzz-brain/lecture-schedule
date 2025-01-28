@@ -37,16 +37,10 @@ app.get('/login', (req, res) => {
   res.render('login');
 });
 
-
-app.listen(5000, () => {
-  console.log('Server listening on port 5000');
-});
-
-
-// const Lecturer = require('./models/Lecturer');
+// const Admin = require('./models/Admin');
 // const bcrypt = require('bcryptjs');
 
-// const admin = new Lecturer({
+// const admin = new Admin({
 //   name: 'Admin',
 //   email: 'admin@example.com',
 //   password: bcrypt.hashSync('password', 10),
@@ -54,7 +48,15 @@ app.listen(5000, () => {
 // });
 
 // admin.save();
+
 // console.log('Admin seeded successfully');
+
+app.listen(5000, () => {
+  console.log('Server listening on port 5000');
+});
+
+
+
 
 
 // const adminRoute = require('./routes/admin');

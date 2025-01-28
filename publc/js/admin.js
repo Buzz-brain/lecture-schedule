@@ -107,7 +107,8 @@ fetch('/admin/lecturers')
             message: '',
         };
 
-        const day = "monday"; // You can update this based on the selected day
+        const day = document.getElementById('day').value.toLowerCase();
+
 
         try {
             const response = await fetch(`/admin/timetable/${day}`, {

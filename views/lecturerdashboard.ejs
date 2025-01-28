@@ -1,167 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lecturer Dashboard</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f8f9fa;
-    }
-    .dashboard {
-      width: 90%;
-      margin: 20px auto;
-      max-width: 1200px;
-    }
-    h1 {
-      text-align: center;
-      color: #333;
-    }
-    .card {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-    .card h2 {
-      margin-bottom: 10px;
-    }
-    .button {
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-    .button:hover {
-      background-color: #0056b3;
-    }
-    .form-group {
-      margin-bottom: 15px;
-    }
-    .form-group label {
-      display: block;
-      margin-bottom: 5px;
-    }
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Academic Timetable Management System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://ai-public.creatie.ai/gen_page/tailwind-custom.css" rel="stylesheet" />
+    <script
+        src="https://cdn.tailwindcss.com/3.4.5?plugins=forms@0.5.7,typography@0.5.13,aspect-ratio@0.4.2,container-queries@0.1.1"></script>
+    <script src="https://ai-public.creatie.ai/gen_page/tailwind-config.min.js" data-color="#000000"
+        data-border-radius="small"></script>
 </head>
-<body>
-  <div class="dashboard">
-    <h1>Lecturer Dashboard</h1>
 
-    <!-- View Courses -->
-    <div class="card">
-      <h2>My Courses</h2>
-      <div id="courses"></div>
+<body class="bg-gray-50">
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="ml-3 text-xl font-semibold text-gray-900">Lecturer Dashboard</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="flex items-center gap-4"><span class="text-gray-700">Lecturer</span><button
+                            class="!rounded-button bg-custom text-white px-4 py-2 text-sm font-medium hover:bg-custom/90">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="relative bg-white overflow-hidden">
+        <div class="max-w-8xl mx-auto">
+            <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:pb-28 xl:pb-32">
+                <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 lg:mt-16 lg:px-8 xl:mt-20">
+                    <div class="mx-auto max-w-7xl px-4 py-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <h3 class="text-xl font-semibold mb-4">My Courses</h3>
+                                <div id="courses" class="space-y-4">
+
+                                </div>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <h3 class="text-xl font-semibold mb-4">Update Lecture Status</h3>
+                                <form class="space-y-4" id="updateMessageForm">
+                                    <div><label class="block text-sm font-medium text-gray-700" for="day">Day</label>
+                                        <select id="day"
+                                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+                                            <option>Monday</option>
+                                            <option>Tuesday</option>
+                                            <option>Wednesday</option>
+                                            <option>Thursday</option>
+                                            <option>Friday</option>
+                                        </select>
+                                    </div>
+                                    <div class="mt-4"><label class="block text-sm font-medium text-gray-700">Start
+                                            Time</label><input type="time" id="startTime"
+                                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" />
+                                    </div>
+                                    <div class="mt-4"><label
+                                            class="block text-sm font-medium text-gray-700">Message/Status</label><input
+                                            type="text" id="message"
+                                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"
+                                            placeholder="e.g., Cancelled, Rescheduled, etc." /></div><button
+                                        type="submit"
+                                        class="mt-6 w-full bg-custom text-white px-4 py-2 rounded-md hover:bg-custom/90">Update
+                                        Status</button>
+                                </form>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <h3 class="text-xl font-semibold mb-4">Upload Lecture Note</h3>
+                                <form class="space-y-4" id="uploadForm" enctype="multipart/form-data">
+                                    <div><label class="block text-sm font-medium text-gray-700">Course
+                                            Title</label><input type="text" id="title"
+                                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" />
+                                    </div>
+                                    <div class="mt-4"><label class="block text-sm font-medium text-gray-700">Upload
+                                            Lecture Note</label><input type="file" id="file"
+                                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" />
+                                    </div><button type="submit"
+                                        class="mt-6 w-full bg-custom text-white px-4 py-2 rounded-md hover:bg-custom/90">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
     </div>
-
-    <!-- Update Message -->
-    <div class="card">
-      <h2>Update Lecture Status</h2>
-      <form id="updateMessageForm">
-        <div class="form-group">
-          <label for="day">Day</label>
-          <input type="text" id="day" placeholder="E.g., Monday" required>
+    <footer class="bg-white">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Support</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li>
+                            <a href="#" class="text-base text-gray-500 hover:text-gray-900">Help Center</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-base text-gray-500 hover:text-gray-900">Contact Us</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-base text-gray-500 hover:text-gray-900">FAQ</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Legal</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li>
+                            <a href="#" class="text-base text-gray-500 hover:text-gray-900">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-base text-gray-500 hover:text-gray-900">Terms of Service</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Company</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li>
+                            <a href="#" class="text-base text-gray-500 hover:text-gray-900">About</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-base text-gray-500 hover:text-gray-900">Blog</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Connect</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li>
+                            <a href="#" class="text-base text-gray-500 hover:text-gray-900">Twitter</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-base text-gray-500 hover:text-gray-900">Facebook</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-base text-gray-500 hover:text-gray-900">LinkedIn</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-200 pt-8 md:flex md:items-center md:justify-between">
+                <div class="flex space-x-6 md:order-2">
+                    <a href="#" class="text-gray-400 hover:text-gray-500">
+                        <i class="fab fa-facebook text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-500">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-500">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                </div>
+                <p class="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
+                    © 2024 Academic Timetable System. All rights reserved.
+                </p>
+            </div>
         </div>
-        <div class="form-group">
-          <label for="startTime">Start Time</label>
-          <input type="time" id="startTime" required>
+    </footer>
+    <script>
+        const lecturerId = localStorage.getItem('lecturerId');
+
+        // Fetch Courses
+        async function fetchCourses() {
+            const response = await fetch(`/lecture/timetable/lecturer/${lecturerId}`);
+            const courses = await response.json();
+            const coursesDiv = document.getElementById('courses');
+            if (courses.length > 0) {
+                coursesDiv.innerHTML = courses.map(course => `
+              <div class="p-4 border rounded-lg">
+            <p class="text-lg font-medium">${course.courseTitle} - ${course.startTime} to ${course.endTime} on ${course.day}
+            </p>
+            <p class="text-sm text-gray-500">${course.message ? `<p>Status: ${course.message}</p>` : ''}</p>
         </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" rows="4" placeholder="E.g., Lecture canceled"></textarea>
-        </div>
-        <button class="button" type="submit">Update</button>
-      </form>
-    </div>
+            `).join('');
+            } else {
+                coursesDiv.innerHTML = '<p>No courses found</p>';
+            }
+        }
 
-    <!-- Upload Lecture Notes -->
-    <div class="card">
-      <h2>Upload Lecture Notes</h2>
-      <form id="uploadForm" enctype="multipart/form-data">
-        <div class="form-group">
-          <label for="file">Choose File</label>
-          <input type="file" id="file" required>
-        </div>
-        <button class="button" type="submit">Upload</button>
-      </form>
-    </div>
-  </div>
 
-  <script>
-    const lecturerId = '6790704fa38e4b10f175195f'; // Replace with actual lecturer ID
 
-    // Fetch Courses
-    async function fetchCourses() {
-      const response = await fetch(`/lecture/timetable/lecturer/${lecturerId}`);
-      const courses = await response.json();
-      const coursesDiv = document.getElementById('courses');
-      if (courses.length > 0) {
-        coursesDiv.innerHTML = courses.map(course => `
-          <div>
-            <strong>${course.courseTitle}</strong> - ${course.startTime} to ${course.endTime} on ${course.day}
-            ${course.message ? `<p>Status: ${course.message}</p>` : ''}
-          </div>
-        `).join('');
-      } else {
-        coursesDiv.innerHTML = '<p>No courses found</p>';
-      }
-    }
+        // Update Message
+            document.getElementById('updateMessageForm').addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const day = document.getElementById('day').value.toLowerCase();
+          const startTime = document.getElementById('startTime').value.replace(/^0/, ''); // Remove leading zero
+          const message = document.getElementById('message').value;
+          const response = await fetch(`/lecturer/timetable/${day}/${startTime}`, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ message, lecturerId }),
+          });
+          if (response.ok) {
+            alert('Message updated successfully!');
+            fetchCourses();
+          } else {
+            alert('Failed to update message.');
+          }
+        });
 
-    // Update Message
-    document.getElementById('updateMessageForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const day = document.getElementById('day').value;
-  const startTime = document.getElementById('startTime').value.replace(/^0/, ''); // Remove leading zero
-  const message = document.getElementById('message').value;
-  const response = await fetch(`/lecturer/timetable/${day}/${startTime}`, {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ message, lecturerId }),
-  });
-  if (response.ok) {
-    alert('Message updated successfully!');
-    fetchCourses();
-  } else {
-    alert('Failed to update message.');
-  }
-});
+             // Upload Lecture Notes
+            document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const fileInput = document.getElementById('file');
+                const title = document.getElementById('title');
+                const formData = new FormData();
+                formData.append('file', fileInput.files[0]);
+                formData.append('courseTitle', title.value); // Add course title to FormData
 
-    // Upload Lecture Notes
-    document.getElementById('uploadForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const fileInput = document.getElementById('file');
-      const formData = new FormData();
-      formData.append('file', fileInput.files[0]);
+                const response = await fetch('/lecturer/upload', {
+                    method: 'POST',
+                    body: formData,
+                });
 
-      const response = await fetch('/lecturer/upload', {
-        method: 'POST',
-        body: formData,
-      });
+                if (response.ok) {
+                    alert('File uploaded successfully!');
+                } else {
+                    alert('Failed to upload file.');
+                }
+            });
 
-      if (response.ok) {
-        alert('File uploaded successfully!');
-      } else {
-        alert('Failed to upload file.');
-      }
-    });
 
-    // Initialize
-    fetchCourses();
-  </script>
+        // Initialize
+        fetchCourses();
+    </script>
 </body>
+
 </html>

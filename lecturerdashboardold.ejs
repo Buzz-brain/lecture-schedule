@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecturer Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+    }
+    .dashboard {
+      width: 90%;
+      margin: 20px auto;
+      max-width: 1200px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .card h2 {
+      margin-bottom: 10px;
+    }
+    .button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .button:hover {
+      background-color: #0056b3;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <h1>Lecturer Dashboard</h1>
+
+    <!-- View Courses -->
+    <div class="card">
+      <h2>My Courses</h2>
+      <div id="courses"></div>
+    </div>
+
+    <!-- Update Message -->
+    <div class="card">
+      <h2>Update Lecture Status</h2>
+      <form id="updateMessageForm">
+        <div class="form-group">
+          <label for="day">Day</label>
+          <input type="text" id="day" placeholder="E.g., Monday" required>
+        </div>
+        <div class="form-group">
+          <label for="startTime">Start Time</label>
+          <input type="time" id="startTime" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" rows="4" placeholder="E.g., Lecture canceled"></textarea>
+        </div>
+        <button class="button" type="submit">Update</button>
+      </form>
+    </div>
+
+    <!-- Upload Lecture Notes -->
+    <div class="card">
+      <h2>Upload Lecture Notes</h2>
+      <form id="uploadForm" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="file">Choose File</label>
+          <input type="file" id="file" required>
+        </div>
+        <button class="button" type="submit">Upload</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const lecturerId = localStorage.getItem('lecturerId');
+
+    // Fetch Courses
+    async function fetchCourses() {
+      const response = await fetch(`/lecture/timetable/lecturer/${lecturerId}`);
+      const courses = await response.json();
+      const coursesDiv = document.getElementById('courses');
+      if (courses.length > 0) {
+        coursesDiv.innerHTML = courses.map(course => `
+          <div class="p-4 border rounded-lg">
+        <p class="text-lg font-medium">${course.courseTitle} - ${course.startTime} to ${course.endTime} on ${course.day}
+        </p>
+        <p class="text-sm text-gray-500">${course.message ? `<p>Status: ${course.message}</p>` : ''}</p>
+    </div>
+        `).join('');
+      } else {
+        coursesDiv.innerHTML = '<p>No courses found</p>';
+      }
+    }
+
+    
+
+    // Update Message
+    document.getElementById('updateMessageForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const day = document.getElementById('day').value;
+  const startTime = document.getElementById('startTime').value.replace(/^0/, ''); // Remove leading zero
+  const message = document.getElementById('message').value;
+  const response = await fetch(`/lecturer/timetable/${day}/${startTime}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ message, lecturerId }),
+  });
+  if (response.ok) {
+    alert('Message updated successfully!');
+    fetchCourses();
+  } else {
+    alert('Failed to update message.');
+  }
+});
+
+    // Upload Lecture Notes
+    document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fileInput = document.getElementById('file');
+      const formData = new FormData();
+      formData.append('file', fileInput.files[0]);
+
+      const response = await fetch('/lecturer/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        alert('File uploaded successfully!');
+      } else {
+        alert('Failed to upload file.');
+      }
+    });
+
+    // Initialize
+    fetchCourses();
+  </script>
+</body>
+</html>

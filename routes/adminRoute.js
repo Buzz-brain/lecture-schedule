@@ -6,6 +6,26 @@ const Student = require('../models/Student');
 const Timetable = require('../models/Timetable');
 const sendNotification = require('../notification');
 
+
+router.post('/admin/login', async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      const admin = await Lecturer.findOne({ email, role: 'admin' });
+      if (!admin) {
+        return res.status(401).json({ error: 'Invalid email or password' });
+      }
+      const isPasswordValid = await bcrypt.compare(password, admin.password);
+      if (!isPasswordValid) {
+        return res.status(401).json({ error: 'Invalid email or password' });
+      }
+      res.json({ message: 'Logged in successfully', admin: admin });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Failed to login' });
+    }
+  });
+
+  
 // Create Lecturer
 router.post('/lecturers', async (req, res) => {
     try {

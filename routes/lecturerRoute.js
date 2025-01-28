@@ -26,6 +26,7 @@ const upload = multer({ dest: './uploads/' });
 router.post('/upload', upload.single('file'), async (req, res) => {
   try {
     const file = req.file;
+
     const uploadResult = await cloudinary.uploader.upload(file.path, {
       resource_type: 'raw',
       folder: 'lectures',
@@ -72,10 +73,11 @@ router.post('/upload', upload.single('file'), async (req, res) => {
 router.patch('/timetable/:day/:startTime', async (req, res) => {
   try {
     const { day, startTime } = req.params;
-    const { message } = req.body;
-    const lecturerId = "6790704fa38e4b10f175195f" //req.body.lecturerId // or req.headers.lecturerid; 
+    const { message, lecturerId } = req.body;
+    console.log(req.params, req.body)
 
-
+// Pad the hour with a leading zero if necessary
+const paddedStartTime = startTime.length === 4 ? `0${startTime}` : startTime;
 
     const timetable = await Timetable.findOne();
     if (!timetable) {
@@ -83,7 +85,9 @@ router.patch('/timetable/:day/:startTime', async (req, res) => {
     }
 
     const dayArray = timetable[day];
-    const lectureIndex = dayArray.findIndex((lecture) => lecture.startTime === startTime);
+    const lectureIndex = dayArray.findIndex((lecture) => lecture.startTime === paddedStartTime);
+    console.log("dayArray", dayArray)
+    console.log("lectureIndex", lectureIndex)
     if (lectureIndex === -1) {
       return res.status(404).json({ error: 'Lecture not found' });
     }

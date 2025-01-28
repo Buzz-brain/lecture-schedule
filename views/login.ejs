@@ -153,25 +153,27 @@ form.addEventListener('submit', async (e) => {
 
     const data = await response.json();
     if (response.ok) {
-        alert(data.message);
-      localStorage.setItem('username', data.user.name); // Store username in localStorage
-      localStorage.setItem('role', data.role); // Store role in localStorage
-      // You can also redirect the user to another page here
-      console.log(data.role)
-      if(data.role == "lecturer") {
-      window.location.href = '/lecturerdashboard';
-      } else {
+  alert(data.message);
+          localStorage.setItem('username', data.user.name);
+          localStorage.setItem('role', data.role);
 
-          window.location.href = '/dashboard';
+          console.log(data.role)
+          if (data.role == "lecturer") {
+              console.log(data.lecturerId)
+              localStorage.setItem('lecturerId', data.lecturerId);
+              window.location.href = '/lecturerdashboard';
+          } else if (data.role == "admin") {
+              window.location.href = '/admindashboard';
+          } else {
+              window.location.href = '/dashboard';
+          }
+      } else {
+          alert(data.error);
       }
 
-
-      } else {
-        alert(data.error);
-      }
-    } catch (error) {
+  } catch (error) {
       alert('An error occurred');
-    }
+  }
   });
 
     </script>
